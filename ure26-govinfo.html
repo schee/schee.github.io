@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026城鎮韌性演習｜行動網路降速演練 各部會宣導彙整</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans+TC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE8;
+    --paper-2:#E4E6DD;
+    --ink:#16233D;
+    --ink-soft:#4A5568;
+    --amber:#E0972E;
+    --amber-soft:#F4E3C4;
+    --teal:#3E6B62;
+    --teal-soft:#DCE7E3;
+    --red:#B4523E;
+    --line:#C9CCC1;
+    --white:#FAFAF6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans TC', 'Noto Sans TC', sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Space Grotesk','IBM Plex Sans TC',sans-serif;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 6vw;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+  }
+  .topbar .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:3px 9px; border:1px solid var(--ink); border-radius:20px;
+    color:var(--ink); font-weight:500;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:64px 6vw 48px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px; letter-spacing:.12em; color:var(--teal);
+    text-transform:uppercase; margin-bottom:18px; font-weight:600;
+  }
+  .hero h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(32px,5.4vw,58px);
+    line-height:1.08;
+    margin:0 0 22px;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--amber);
+    position:relative;
+  }
+  .hero-sub{
+    max-width:56ch;
+    font-size:16.5px;
+    color:var(--ink-soft);
+    margin-bottom:36px;
+  }
+  .signal-strip{
+    display:flex; align-items:flex-end; gap:14px;
+    margin:8px 0 40px;
+  }
+  .bar{width:10px; background:var(--ink); border-radius:2px 2px 0 0; opacity:1;}
+  .bar.dim{background:var(--line);}
+  .facts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:0;
+    border:1px solid var(--ink);
+    border-radius:10px;
+    overflow:hidden;
+    max-width:900px;
+  }
+  .facts > div{
+    padding:18px 20px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .facts > div:last-child{border-right:none;}
+  .facts .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--teal); margin-bottom:6px; font-weight:600;
+  }
+  .facts .v{font-size:15.5px; font-weight:600;}
+  .facts .v small{display:block;font-weight:400;color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+
+  /* ===== Legend row ===== */
+  .legend{
+    display:flex; flex-wrap:wrap; gap:22px;
+    padding:20px 6vw; border-bottom:1px solid var(--line);
+    font-size:13.5px; color:var(--ink-soft);
+    background:var(--paper-2);
+  }
+  .legend span{display:inline-flex;align-items:center;gap:8px;}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  /* ===== Section header ===== */
+  .section-head{
+    padding:52px 6vw 8px;
+  }
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(24px,3vw,34px);
+    margin:0 0 8px;
+  }
+  .section-head p{color:var(--ink-soft); max-width:60ch; font-size:15px;}
+
+  /* ===== Cards grid ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:1px;
+    background:var(--line);
+    margin:28px 6vw 60px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .card{
+    background:var(--white);
+    padding:26px 26px 24px;
+    display:flex; flex-direction:column; gap:14px;
+    position:relative;
+  }
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card-num{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft);
+    letter-spacing:.06em;
+  }
+  .card h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:20px; margin:2px 0 0; font-weight:700;
+  }
+  .badges{display:flex; gap:6px; flex-wrap:wrap;}
+  .badge{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; padding:3px 8px; border-radius:12px;
+    font-weight:600; letter-spacing:.03em; white-space:nowrap;
+  }
+  .badge.role{background:var(--teal-soft); color:var(--teal);}
+  .badge.watch{background:var(--amber-soft); color:#8a5c15;}
+
+  .card ul{margin:0; padding-left:18px; font-size:14.5px; color:#2a3550;}
+  .card ul li{margin-bottom:7px;}
+  .card ul li::marker{color:var(--amber);}
+
+  .card-bars{
+    display:flex; align-items:flex-end; gap:4px; height:24px; margin-top:auto;
+  }
+  .card-bars .b{width:5px; background:var(--line); border-radius:1px;}
+  .card-bars .b.on{background:var(--teal);}
+
+  .source-link{
+    margin-top:6px;
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--ink);
+    width:fit-content;
+    padding-bottom:1px;
+    transition:opacity .15s;
+  }
+  .source-link:hover{opacity:.6;}
+  .source-link::after{content:"↗";}
+
+  /* ===== Note / disclaimer ===== */
+  .note{
+    margin:0 6vw 70px;
+    padding:22px 24px;
+    background:var(--teal-soft);
+    border-left:4px solid var(--teal);
+    border-radius:6px;
+    font-size:13.8px;
+    color:#243a35;
+  }
+  .note b{color:var(--teal);}
+
+  footer{
+    padding:26px 6vw 40px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (max-width:640px){
+    .facts{grid-template-columns:1fr 1fr;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:8px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>2026 城鎮韌性（防空）演習 · 行動網路降速演練</span>
+    <span class="tag"><span class="dot"></span>NCC 規劃 / 8 部會協力宣導</span>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">跨部會宣導彙整 · 2026.08</div>
+    <h1>當手機訊號被<br>調<em>慢</em>三十分鐘，<br>政府怎麼準備？</h1>
+    <p class="hero-sub">2026 城鎮韌性（防空）演習首度加入「行動網路降速」演練，8 個部會分別就自身業務發布提醒。以下彙整各部會公告重點，並附上原始出處連結供查證。</p>
+
+    <div class="signal-strip" aria-hidden="true">
+      <div class="bar" style="height:34px;"></div>
+      <div class="bar" style="height:26px;"></div>
+      <div class="bar dim" style="height:18px;"></div>
+      <div class="bar dim" style="height:10px;"></div>
+    </div>
+
+    <div class="facts">
+      <div><div class="k">中部場次</div><div class="v mono">8/10（一）14:30–15:00<small>苗栗・台中・南投・彰化・雲林・嘉義縣市</small></div></div>
+      <div><div class="k">北部場次</div><div class="v mono">8/13（四）14:30–15:00<small>台北・新北・基隆・桃園・新竹縣市・宜蘭</small></div></div>
+      <div><div class="k">受影響範圍</div><div class="v">僅 4G/5G 行動數據<small>固網寬頻、室內 Wi-Fi 不受影響</small></div></div>
+      <div><div class="k">仍可正常使用</div><div class="v">語音・簡訊・CBS<small>110、119 等緊急通訊不受影響</small></div></div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--teal);"></span>主辦／統籌機關</span>
+    <span><span class="swatch" style="background:var(--amber);"></span>提醒事項含罰則或需民眾預先準備</span>
+    <span><span class="swatch" style="background:var(--line);"></span>一般業務因應提醒</span>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">部會彙整 · 01—08</div>
+    <h2>八個部會，各自守住一塊拼圖</h2>
+    <p>從防空避難管制、軍演排程，到金融交易、掛號轉診——降速的 30 分鐘牽動不同業務系統，以下為各部會摘要重點。</p>
+  </div>
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">01 / 主辦機關</div>
+          <h3>國防部</h3>
+        </div>
+        <div class="badges"><span class="badge role">統籌演習</span></div>
+      </div>
+      <ul>
+        <li>2026 城鎮韌性（防空）演習於 8/7–8/13 依南部、中部、外離島、東部、北部「有預警、分區異時」方式辦理，共 5 個梯次。</li>
+        <li>中部（8/10）、北部（8/13）14 縣市首度加入「行動網路降速」演練，與漢光 42 號實兵演習同步進行。</li>
+        <li>南部、東部及外離島因近年已有實際通訊受阻經驗，本次暫不納入降速演練。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b on" style="height:22px;"></div><div class="b on" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b" style="height:10px;"></div>
+        <div class="b" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.mnd.gov.tw/news/pressrelease/87171" target="_blank" rel="noopener">原始出處：國防部新聞稿</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">02 / 民防管制</div>
+          <h3>內政部</h3>
+        </div>
+        <div class="badges"><span class="badge watch">含罰則</span></div>
+      </div>
+      <ul>
+        <li>警報發放期間，人、車須配合軍憲警與民防人員引導，就近進入防空避難設施或依「防空避難指引」尋找掩蔽處。</li>
+        <li>建議民眾演習前先下載警政署「警政服務」App 或「消防防災 e 點通」App，並截圖保存鄰近避難設施位置，以防網路降速時查詢不便。</li>
+        <li>未依《民防法》第 21 條配合管制及演練者，可處新台幣 3 萬元以上 15 萬元以下罰鍰。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b on" style="height:22px;"></div><div class="b on" style="height:18px;"></div>
+        <div class="b" style="height:14px;"></div><div class="b" style="height:10px;"></div>
+        <div class="b" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.moi.gov.tw/MOICA20260730.htm" target="_blank" rel="noopener">原始出處：內政部公告</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">03 / 財稅服務</div>
+          <h3>財政部</h3>
+        </div>
+        <div class="badges"><span class="badge role">金融同步</span></div>
+      </div>
+      <ul>
+        <li>配合演習時程轉發提醒：中部 8/10、北部 8/13 演練時段內，行動網路降速期間手機端稅務相關服務（如統一發票兌獎 App、電子發票查詢）連線可能變慢。</li>
+        <li>建議民眾行動繳費、對獎等需求提前於演練時段外完成，或改用固網、超商及臨櫃管道。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b" style="height:22px;"></div><div class="b on" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b" style="height:10px;"></div>
+        <div class="b" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.facebook.com/mof.gov.tw/posts/1355125703469545/" target="_blank" rel="noopener">原始出處：財政部 Facebook</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">04 / 產業服務</div>
+          <h3>經濟部</h3>
+        </div>
+        <div class="badges"><span class="badge role">產業因應</span></div>
+      </div>
+      <ul>
+        <li>提醒演練期間工商憑證線上服務、國營事業官網及 App、加油站行動支付等可能受影響。</li>
+        <li>呼籲民眾與業者改用固網、室內 Wi-Fi，或改撥客服專線處理臨時需求。</li>
+        <li>強調本次演練是模擬災害發生時的通訊情境，非真正的網路中斷。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b" style="height:22px;"></div><div class="b on" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b" style="height:10px;"></div>
+        <div class="b" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.facebook.com/moea.gov.tw/posts/1481937233977981/" target="_blank" rel="noopener">原始出處：經濟部 Facebook</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">05 / 運輸服務</div>
+          <h3>交通部</h3>
+        </div>
+        <div class="badges"><span class="badge role">運具照常</span></div>
+      </div>
+      <ul>
+        <li>各機場、港口、鐵路、高鐵、公路及捷運車輛演習期間均照常起降、靠離與行駛，僅下車旅客與接送親友仍須配合疏散避難。</li>
+        <li>高鐵提醒：網路訂票及行動購票 App 可能因降速受影響，建議提早完成訂位、付款、取票，或改用超商取票、現金購買車販商品。</li>
+        <li>車站周邊接駁公車、快捷公車及排班計程車將配合交通管制暫停行駛，建議提早抵達車站。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b" style="height:22px;"></div><div class="b on" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b on" style="height:10px;"></div>
+        <div class="b" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.motc.gov.tw/ch/app/news_list/view?module=news&id=14&serno=43a088af-ddd0-4d48-8b76-55f442e6f6f8" target="_blank" rel="noopener">原始出處：交通部公告</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">06 / 醫療照護</div>
+          <h3>衛福部</h3>
+        </div>
+        <div class="badges"><span class="badge watch">需提前準備</span></div>
+      </div>
+      <ul>
+        <li>公告提醒北部、中部醫療院所，演習期間行動通訊降速可能影響醫療機構與衛生單位、長照社福機構間的聯繫及跨院轉診協調效率。</li>
+        <li>要求各院所確保演習期間醫療與社福服務不中斷，緊急床位調度改以電話確認。</li>
+        <li>建議民眾將電子慢箋、預約單等提前截圖或列印保存，多家醫學中心將開放院內免費 Wi-Fi 供就醫民眾使用。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b" style="height:22px;"></div><div class="b" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b on" style="height:10px;"></div>
+        <div class="b" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.mohw.gov.tw/cp-18-87282-1.html" target="_blank" rel="noopener">原始出處：衛福部公告</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">07 / 通訊統籌</div>
+          <h3>數位發展部</h3>
+        </div>
+        <div class="badges"><span class="badge role">跨部會宣導</span></div>
+      </div>
+      <ul>
+        <li>整理演練期間服務對照表：語音電話、簡訊（SMS）、細胞廣播簡訊（CBS）正常使用；影音串流、視訊通話、行動上網速度及部分物聯網（IoT）應用可能受影響；固網寬頻與其連線之 Wi-Fi 不受影響。</li>
+        <li>提醒民眾降速屬演練正常情形，毋須恐慌，並協助彙整各部會備援通訊方案對外說明。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b" style="height:22px;"></div><div class="b on" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b on" style="height:10px;"></div>
+        <div class="b on" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.facebook.com/moda.gov.tw/photos/1044095408436557/" target="_blank" rel="noopener">原始出處：數發部 Facebook</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="card-num">08 / 金融服務</div>
+          <h3>金融監督管理委員會</h3>
+        </div>
+        <div class="badges"><span class="badge watch">四大服務示警</span></div>
+      </div>
+      <ul>
+        <li>配合演習提醒替代管道：行動銀行 App、電子支付 App 或儲值、無卡提款，以及網路繳費四大服務，演練期間可能出現連線變慢、扣款失敗或重複扣款。</li>
+        <li>實體 ATM 及信用卡感應交易不受影響，建議股票下單、網銀轉帳等需求提前完成，或改用 Wi-Fi、固網、臨櫃辦理。</li>
+        <li>銀行局說明本次演練僅針對行動數據網路降速，不影響 Wi-Fi、固網及金融機構專線。</li>
+      </ul>
+      <div class="card-bars" aria-hidden="true">
+        <div class="b" style="height:22px;"></div><div class="b" style="height:18px;"></div>
+        <div class="b on" style="height:14px;"></div><div class="b on" style="height:10px;"></div>
+        <div class="b on" style="height:6px;"></div>
+      </div>
+      <a class="source-link" href="https://www.facebook.com/fsc.gov.tw/posts/1450818053739999/" target="_blank" rel="noopener">原始出處：金管會 Facebook</a>
+    </article>
+
+  </div>
+
+  <div class="note">
+    <b>關於本頁彙整方式：</b>各卡片內容係依使用者提供之各部會公告 / 社群貼文網址，並交叉比對中央社、聯合報、行政院官網等公開報導後，以自己的文字改寫摘要而成，並非原文逐字引用。部分連結（如 Facebook 貼文）內容可能隨原發布單位更新或下架而變動，建議點擊「原始出處」以各部會公布之最新版本為準。演習細節如有調整，請留意 NCC 及國防部全民防衛動員署最新公告。
+  </div>
+
+  <footer>
+    <span>資料彙整：2026 城鎮韌性（防空）演習・行動網路降速演練</span>
+    <span>製作日期：2026-08-04</span>
+  </footer>
+
+</body>
+</html>
