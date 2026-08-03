@@ -213,6 +213,26 @@
     color:var(--ink-soft);
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
   }
+  .footer-extra{
+    margin:0 6vw 34px;
+    padding-top:22px;
+    border-top:1px dashed var(--line);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+  }
+  .footer-extra .txt{max-width:52ch;}
+  .footer-extra .txt b{color:var(--ink);}
+  .footer-extra .txt p{margin:4px 0 0; font-size:13px; color:var(--ink-soft);}
+  .footer-extra a.cta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px; font-weight:600;
+    color:var(--white); background:var(--teal);
+    padding:10px 18px; border-radius:20px;
+    text-decoration:none; white-space:nowrap;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:opacity .15s;
+  }
+  .footer-extra a.cta:hover{opacity:.8;}
+  .footer-extra a.cta::after{content:"↗";}
 
   @media (max-width:640px){
     .facts{grid-template-columns:1fr 1fr;}
@@ -431,6 +451,14 @@
 
   <div class="note">
     <b>關於本頁彙整方式：</b>各卡片內容係依使用者提供之各部會公告 / 社群貼文網址，並交叉比對中央社、聯合報、行政院官網等公開報導後，以自己的文字改寫摘要而成，並非原文逐字引用。部分連結（如 Facebook 貼文）內容可能隨原發布單位更新或下架而變動，建議點擊「原始出處」以各部會公布之最新版本為準。演習細節如有調整，請留意 NCC 及國防部全民防衛動員署最新公告。
+  </div>
+
+  <div class="footer-extra">
+    <div class="txt">
+      <b>民間自主備援：LoRa 緊急通訊演練</b>
+      <p>由民間社群發起的自主 LoRa 無線通訊備援演練，與行動網路降速演練同期舉行，供有興趣的民眾參考與參與。</p>
+    </div>
+    <a class="cta" href="https://ure26.takke.me/" target="_blank" rel="noopener">前往 LoRa 演練專頁</a>
   </div>
 
   <footer>
