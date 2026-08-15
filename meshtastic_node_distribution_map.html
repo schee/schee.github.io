@@ -1,0 +1,53 @@
+<h2 class="sr-only">台北地區 Meshtastic 節點分布地圖，顯示 70 個發送節點位置，依訊號強度上色，圓圈大小代表收到封包次數</h2>
+<div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:10px; font-size:12px; color:var(--text-secondary);">
+  <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#1D9E75;"></span>SNR 強 (&gt;0dB)</span>
+  <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#BA7517;"></span>SNR 中 (-8~0dB)</span>
+  <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#A32D2D;"></span>SNR 弱 (&lt;-8dB)</span>
+  <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:50%;background:#378ADD;border:2px solid #fff;"></span>接收站 (ure1)</span>
+</div>
+<div id="map" style="width:100%; height:460px; border-radius:12px; border:0.5px solid var(--border);"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const nodes = [{"name": " mudskipper 125", "lat": 25.1396, "lng": 121.4513, "count": 1, "avg_snr": -11.25, "max_dist": 12151.0}, {"name": "517_echo", "lat": 25.0348, "lng": 121.4513, "count": 2, "avg_snr": -6.75, "max_dist": 12285.0}, {"name": "AnknT114-53fb", "lat": 24.9758, "lng": 121.5212, "count": 6, "avg_snr": -4.3333, "max_dist": 8043.0}, {"name": "ArmorBlock 新北蘆洲GW", "lat": 25.0793, "lng": 121.4737, "count": 1, "avg_snr": -10.5, "max_dist": 5573.0}, {"name": "ArmorBlock新北蘆洲☀", "lat": 25.0806, "lng": 121.471, "count": 1, "avg_snr": -5.0, "max_dist": 5884.0}, {"name": "BBB-108-solar☀", "lat": 25.0282, "lng": 121.5103, "count": 1, "avg_snr": -4.5, "max_dist": 2284.0}, {"name": "Bu T1000e", "lat": 25.1831, "lng": 121.4428, "count": 5, "avg_snr": -4.35, "max_dist": 26796.0}, {"name": "Bu 淡水資料中心", "lat": 25.1706, "lng": 121.4452, "count": 3, "avg_snr": -8.0833, "max_dist": 25989.0}, {"name": "CCM-5ef3", "lat": 24.9627, "lng": 121.1957, "count": 3, "avg_snr": -4.8333, "max_dist": 35021.0}, {"name": "CCW235-GM2", "lat": 24.9948, "lng": 121.4861, "count": 1, "avg_snr": -4.0, "max_dist": 6409.0}, {"name": "GAT562 8512", "lat": 25.0535, "lng": 121.506, "count": 38, "avg_snr": -3.75, "max_dist": 12531.0}, {"name": "Gary no.10", "lat": 24.9758, "lng": 121.9035, "count": 1, "avg_snr": -2.25, "max_dist": 37878.0}, {"name": "HankLi-WT", "lat": 24.9496, "lng": 121.5496, "count": 2, "avg_snr": -6.0, "max_dist": 11419.0}, {"name": "JC-Solar1", "lat": 24.9758, "lng": 121.5365, "count": 1, "avg_snr": -10.75, "max_dist": 984.0}, {"name": "James-Only (JAM0)", "lat": 24.9627, "lng": 121.5103, "count": 1, "avg_snr": 1.0, "max_dist": 9496.0}, {"name": "James-Only 安光路", "lat": 24.9627, "lng": 121.5103, "count": 1, "avg_snr": -2.0, "max_dist": 2376.0}, {"name": "KL0cf4", "lat": 24.6153, "lng": 121.8183, "count": 1, "avg_snr": -7.0, "max_dist": 56910.0}, {"name": "LoRa TPE木柵光輝路", "lat": 24.9849, "lng": 121.5579, "count": 1, "avg_snr": -14.5, "max_dist": 2298.0}, {"name": "LoRaGas", "lat": 25.0544, "lng": 121.5627, "count": 1, "avg_snr": -9.25, "max_dist": 9678.0}, {"name": "Mesh 肉桂捲", "lat": 24.9528, "lng": 121.5005, "count": 2, "avg_snr": 8.75, "max_dist": 4665.0}, {"name": "MeshAI 天台", "lat": 25.0617, "lng": 121.4975, "count": 5, "avg_snr": 0.95, "max_dist": 11267.0}, {"name": "Meshtastic 0105", "lat": 24.9889, "lng": 121.5103, "count": 2, "avg_snr": -6.125, "max_dist": 3961.0}, {"name": "Meshtastic 0472", "lat": 25.0413, "lng": 121.5365, "count": 1, "avg_snr": -9.5, "max_dist": 2110.0}, {"name": "Meshtastic 07d0", "lat": 24.8253, "lng": 121.0233, "count": 1, "avg_snr": -3.25, "max_dist": 55580.0}, {"name": "Meshtastic 081c", "lat": 25.1396, "lng": 121.7659, "count": 1, "avg_snr": 5.25, "max_dist": 29373.0}, {"name": "Meshtastic 1258", "lat": 24.9912, "lng": 121.4266, "count": 2, "avg_snr": 0.375, "max_dist": 11987.0}, {"name": "Meshtastic 1940", "lat": 24.7988, "lng": 121.2678, "count": 1, "avg_snr": -13.5, "max_dist": 32952.0}, {"name": "Meshtastic 352e", "lat": 25.0544, "lng": 121.2219, "count": 1, "avg_snr": -7.5, "max_dist": 33058.0}, {"name": "Meshtastic 3815", "lat": 25.009, "lng": 121.4266, "count": 1, "avg_snr": -6.25, "max_dist": 13013.0}, {"name": "Meshtastic 3a66", "lat": 25.0348, "lng": 121.6086, "count": 2, "avg_snr": -7.625, "max_dist": 9835.0}, {"name": "Meshtastic 40ca", "lat": 24.9993, "lng": 121.5527, "count": 1, "avg_snr": 0.5, "max_dist": 6501.0}, {"name": "Meshtastic 4408", "lat": 24.7202, "lng": 121.7659, "count": 1, "avg_snr": 9.75, "max_dist": 35670.0}, {"name": "Meshtastic 442b", "lat": 25.038, "lng": 121.4546, "count": 14, "avg_snr": -3.9643, "max_dist": 12365.0}, {"name": "Meshtastic 4a04", "lat": 25.0348, "lng": 121.2416, "count": 1, "avg_snr": -0.5, "max_dist": 31242.0}, {"name": "Meshtastic 4b9e", "lat": 24.9889, "lng": 121.4185, "count": 2, "avg_snr": -5.875, "max_dist": 12740.0}, {"name": "Meshtastic 5e00", "lat": 25.0266, "lng": 121.4595, "count": 2, "avg_snr": 0.75, "max_dist": 11288.0}, {"name": "Meshtastic 6288", "lat": 25.1462, "lng": 121.6283, "count": 2, "avg_snr": -1.625, "max_dist": 21466.0}, {"name": "Meshtastic 70e0", "lat": 24.9889, "lng": 121.5496, "count": 1, "avg_snr": -2.25, "max_dist": 2284.0}, {"name": "Meshtastic 84db", "lat": 24.9954, "lng": 121.5431, "count": 1, "avg_snr": -1.75, "max_dist": 6400.0}, {"name": "Meshtastic 8ca7", "lat": 24.9954, "lng": 121.4644, "count": 1, "avg_snr": 8.5, "max_dist": 8446.0}, {"name": "Meshtastic 8dcc", "lat": 25.0479, "lng": 121.5431, "count": 1, "avg_snr": 2.5, "max_dist": 2641.0}, {"name": "Meshtastic 8fe6", "lat": 25.0372, "lng": 121.5075, "count": 9, "avg_snr": -3.5556, "max_dist": 11316.0}, {"name": "Meshtastic 9b4b", "lat": 25.0085, "lng": 121.3727, "count": 2, "avg_snr": -2.125, "max_dist": 15170.0}, {"name": "Meshtastic b4d0", "lat": 24.9753, "lng": 121.5478, "count": 3, "avg_snr": -2.9167, "max_dist": 8439.0}, {"name": "Meshtastic ccd4", "lat": 25.1396, "lng": 121.5037, "count": 1, "avg_snr": -10.0, "max_dist": 19357.0}, {"name": "Meshtastic d044", "lat": 25.0151, "lng": 121.4841, "count": 2, "avg_snr": -3.625, "max_dist": 7833.0}, {"name": "Meshtastic d8de", "lat": 24.851, "lng": 121.5584, "count": 1, "avg_snr": -9.0, "max_dist": 11353.0}, {"name": "Meshtastic e6fd", "lat": 24.9823, "lng": 121.5037, "count": 2, "avg_snr": -5.875, "max_dist": 7406.0}, {"name": "Meshtastic f63c", "lat": 25.0348, "lng": 121.5037, "count": 1, "avg_snr": -9.0, "max_dist": 1967.0}, {"name": "Meshtastic f87a", "lat": 25.038, "lng": 121.4546, "count": 1, "avg_snr": 8.75, "max_dist": 11749.0}, {"name": "Meshtastic f8ad", "lat": 24.9758, "lng": 121.4448, "count": 1, "avg_snr": -5.0, "max_dist": 10818.0}, {"name": "Meshtastic f958", "lat": 24.7849, "lng": 121.0176, "count": 1, "avg_snr": 9.5, "max_dist": 56832.0}, {"name": "MiniMesh1", "lat": 25.1047, "lng": 121.5212, "count": 3, "avg_snr": 3.0, "max_dist": 15431.0}, {"name": "OLBT Off-Grid", "lat": 25.14, "lng": 121.48, "count": 1, "avg_snr": -10.25, "max_dist": 10897.0}, {"name": "WH64", "lat": 25.0282, "lng": 121.5103, "count": 2, "avg_snr": -6.5, "max_dist": 8946.0}, {"name": "bbcat 1db8 EDC backup", "lat": 24.961, "lng": 121.5382, "count": 1, "avg_snr": -10.75, "max_dist": 1583.0}, {"name": "chang-yi 35be", "lat": 25.044, "lng": 121.5271, "count": 2, "avg_snr": -5.125, "max_dist": 1117.0}, {"name": "lu02 2d65", "lat": 25.002, "lng": 121.5365, "count": 2, "avg_snr": -10.5, "max_dist": 3703.0}, {"name": "sonnykuo-M6", "lat": 24.9824, "lng": 121.5412, "count": 2, "avg_snr": 3.25, "max_dist": 1480.0}, {"name": "sonnykuo", "lat": 25.0211, "lng": 121.5277, "count": 2, "avg_snr": -13.375, "max_dist": 5976.0}, {"name": "ure26-field-1", "lat": 24.9692, "lng": 121.5431, "count": 1, "avg_snr": 8.75, "max_dist": 0.0}, {"name": "機器人王國", "lat": 25.0348, "lng": 121.5037, "count": 9, "avg_snr": -2.7222, "max_dist": 9809.0}, {"name": "機器人王國-01", "lat": 25.0348, "lng": 121.5037, "count": 1, "avg_snr": 0.75, "max_dist": 1967.0}, {"name": "石灰坑山", "lat": 24.9823, "lng": 121.3989, "count": 2, "avg_snr": -1.875, "max_dist": 14606.0}, {"name": "萬隆lu01", "lat": 24.9995, "lng": 121.5394, "count": 1, "avg_snr": 2.5, "max_dist": 3388.0}, {"name": "金融節點1", "lat": 25.0413, "lng": 121.6152, "count": 1, "avg_snr": -4.25, "max_dist": 9930.0}, {"name": "金融節點2", "lat": 25.0544, "lng": 121.6152, "count": 3, "avg_snr": -13.5833, "max_dist": 12911.0}, {"name": "金融節點3", "lat": 25.0282, "lng": 121.6152, "count": 1, "avg_snr": -14.0, "max_dist": 10142.0}, {"name": "旅遊節點", "lat": 25.0544, "lng": 121.5889, "count": 2, "avg_snr": -10.375, "max_dist": 7298.0}, {"name": "戶外節點", "lat": 25.0413, "lng": 121.5889, "count": 1, "avg_snr": -12.5, "max_dist": 11865.0}];
+const rx = {lat: 24.969216, lng: 121.5430656};
+
+const map = L.map('map', {scrollWheelZoom: false}).setView([rx.lat, rx.lng], 11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18
+}).addTo(map);
+
+function snrColor(s) {
+  if (s > 0) return '#1D9E75';
+  if (s > -8) return '#BA7517';
+  return '#A32D2D';
+}
+function radiusFor(count) {
+  return 4 + Math.min(count, 40) * 0.5;
+}
+
+nodes.forEach(function(n) {
+  const r = radiusFor(n.count);
+  const col = snrColor(n.avg_snr);
+  const c = L.circleMarker([n.lat, n.lng], {
+    radius: r,
+    fillColor: col,
+    color: col,
+    weight: 1,
+    fillOpacity: 0.55
+  }).addTo(map);
+  const distText = n.max_dist ? (n.max_dist/1000).toFixed(1) + ' km' : '未知';
+  c.bindPopup(
+    '<div style="font-size:13px;line-height:1.5;">' +
+    '<b>' + n.name + '</b><br>' +
+    '收到次數: ' + n.count + '<br>' +
+    'SNR: ' + n.avg_snr.toFixed(1) + ' dB<br>' +
+    '最遠距離: ' + distText +
+    '</div>'
+  );
+});
+
+L.circleMarker([rx.lat, rx.lng], {
+  radius: 9, fillColor: '#378ADD', color: '#fff', weight: 2, fillOpacity: 1
+}).addTo(map).bindPopup('<b>接收站 ure1</b>');
+</script>
